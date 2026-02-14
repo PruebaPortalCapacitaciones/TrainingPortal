@@ -4,21 +4,28 @@ import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.beans.factory.annotation.Value;
 
 /* Configuración de seguridad para la aplicación */
 @Configuration
 public class SecurityConfig {
 
-    private final JwtFilter jwtFilter;
+    @Value("${cors.allowed-origins}")
+    private String allowedOrigins;
 
-    public SecurityConfig(JwtFilter jwtFilter) {
+    private final JwtFilter jwtFilter;
+    private final AccessDeniedHandlerImpl accessDeniedHandler;
+
+    public SecurityConfig(JwtFilter jwtFilter, AccessDeniedHandlerImpl accessDeniedHandler) {
         this.jwtFilter = jwtFilter;
+        this.accessDeniedHandler = accessDeniedHandler;
     }
 
     /* Configuración de la cadena de filtros de seguridad */
@@ -28,7 +35,13 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/users/register", "/users/login").permitAll())
+                        .requestMatchers("/users/register", "/users/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/courses/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/courses/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/courses/**").hasRole("ADMIN")
+                        .anyRequest().authenticated())
+                .exceptionHandling(ex -> ex
+                        .accessDeniedHandler(accessDeniedHandler))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -38,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedOrigins(Arrays.asList(allowedOrigins.split(",")));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
