@@ -2,6 +2,7 @@ package com.gis.trainingportal.security;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -11,7 +12,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.beans.factory.annotation.Value;
 
 /* Configuración de seguridad para la aplicación */
 @Configuration
@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/courses/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/courses/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/courses/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/reporting/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex
                         .accessDeniedHandler(accessDeniedHandler))

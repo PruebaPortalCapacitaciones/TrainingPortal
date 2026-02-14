@@ -7,7 +7,11 @@
     </div>
 
     <nav class="nav-menu">
-      <a routerLink="/dashboard/courses" routerLinkActive="active">
+      <a
+        routerLink="/dashboard/courses"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
         <mat-icon>menu_book</mat-icon>
         <span>Cursos</span>
       </a>
@@ -42,9 +46,20 @@
   <main class="content">
     <router-outlet></router-outlet>
 
-    <div class="welcome" *ngIf="showWelcome()">
-      <h2>¡Bienvenido, {{ user?.name }}!</h2>
-      <p>Selecciona una opción del menú para comenzar.</p>
+    <!-- Dashboard de estadísticas según rol -->
+    <div class="stats-container" *ngIf="showWelcome()">
+      <!-- Para USER -->
+      <div *ngIf="!isAdmin">
+        <div *ngIf="userCoursesLoaded; else loading">
+          <app-user-stats [courses]="userCourses"></app-user-stats>
+        </div>
+        <ng-template #loading>
+          <div class="loading-stats">Cargando tus estadísticas...</div>
+        </ng-template>
+      </div>
+
+      <!-- Para ADMIN -->
+      <app-admin-stats *ngIf="isAdmin"></app-admin-stats>
     </div>
   </main>
 </div>

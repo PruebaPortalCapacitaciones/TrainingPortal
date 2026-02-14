@@ -183,3 +183,13 @@
     padding: 1rem;
   }
 }
+
+.loading-stats {
+  text-align: center;
+  padding: 3rem;
+  color: $text-soft;
+  font-size: 1.1rem;
+  background: $white;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba($text-dark, 0.05);
+}

@@ -1,0 +1,77 @@
+<div class="admin-stats">
+  <div class="loading" *ngIf="loading">Cargando estadísticas...</div>
+
+  <div *ngIf="!loading">
+    <!-- Tarjetas principales -->
+    <div class="main-stats">
+      <div class="stat-card users">
+        <mat-icon>people</mat-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.totalUsers }}</span>
+          <span class="stat-label">Usuarios</span>
+        </div>
+      </div>
+
+      <div class="stat-card courses">
+        <mat-icon>menu_book</mat-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.totalCourses }}</span>
+          <span class="stat-label">Total Cursos</span>
+        </div>
+      </div>
+
+      <div class="stat-card active">
+        <mat-icon>check_circle</mat-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.activeCourses }}</span>
+          <span class="stat-label">Activos</span>
+        </div>
+      </div>
+
+      <div class="stat-card inactive">
+        <mat-icon>cancel</mat-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.inactiveCourses }}</span>
+          <span class="stat-label">Inactivos</span>
+        </div>
+      </div>
+
+      <div class="stat-card enrollments">
+        <mat-icon>how_to_reg</mat-icon>
+        <div class="stat-info">
+          <span class="stat-value">{{ stats.totalEnrollments }}</span>
+          <span class="stat-label">Inscripciones</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas por estado -->
+    <div class="section">
+      <h3>Inscripciones por estado</h3>
+      <div class="status-grid">
+        <div
+          *ngFor="let item of statusEntries"
+          class="status-card"
+          [style.background]="getStatusColor(item.key) + '20'"
+        >
+          <span class="status-label">{{ getStatusLabel(item.key) }}</span>
+          <span class="status-value" [style.color]="getStatusColor(item.key)">
+            {{ item.value }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top cursos -->
+    <div class="section">
+      <h3>Cursos más populares</h3>
+      <div class="top-courses">
+        <div *ngFor="let course of stats.topCourses; let i = index" class="top-course-item">
+          <span class="rank">{{ i + 1 }}</span>
+          <span class="course-title">{{ course.title }}</span>
+          <span class="course-count">{{ course.enrollments }} inscripciones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

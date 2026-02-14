@@ -1,0 +1,139 @@
+@import '../../../../palette';
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: $text-soft;
+}
+
+.main-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .stat-card {
+    background: $white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 5px 15px rgba($text-dark, 0.05);
+
+    mat-icon {
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .stat-info {
+      display: flex;
+      flex-direction: column;
+
+      .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: $text-soft;
+      }
+    }
+
+    &.users {
+      background: linear-gradient(135deg, $mint-dark, $mint);
+      color: $white;
+      mat-icon,
+      .stat-label {
+        color: $white;
+      }
+    }
+    &.courses {
+      background: linear-gradient(135deg, $primary-dark, $primary);
+      color: $white;
+      mat-icon,
+      .stat-label {
+        color: $white;
+      }
+    }
+    &.active {
+      background: #e8f5e8;
+    }
+    &.inactive {
+      background: #ffebee;
+    }
+    &.enrollments {
+      background: #fff3e0;
+    }
+  }
+}
+
+.section {
+  background: $white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba($text-dark, 0.05);
+
+  h3 {
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+
+  .status-card {
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .status-label {
+      font-weight: 500;
+      color: $text-dark;
+    }
+
+    .status-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.top-courses {
+  .top-course-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid $mint-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .rank {
+      width: 40px;
+      color: $text-light;
+      font-weight: 600;
+    }
+
+    .course-title {
+      flex: 1;
+      color: $text-dark;
+    }
+
+    .course-count {
+      color: $primary-dark;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<div class="user-stats">
+  <h3>Mi Progreso</h3>
+
+  <div class="stats-grid">
+    <div class="stat-card total">
+      <mat-icon>school</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{ stats.total }}</span>
+        <span class="stat-label">Total Cursos</span>
+      </div>
+    </div>
+
+    <div class="stat-card" [style.background]="getStatusColor('Inscrito') + '20'">
+      <mat-icon>assignment</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{ stats.inscritos }}</span>
+        <span class="stat-label">Inscritos</span>
+      </div>
+    </div>
+
+    <div class="stat-card" [style.background]="getStatusColor('Iniciado') + '20'">
+      <mat-icon>play_circle</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{ stats.iniciados }}</span>
+        <span class="stat-label">Iniciados</span>
+      </div>
+    </div>
+
+    <div class="stat-card" [style.background]="getStatusColor('En progreso') + '20'">
+      <mat-icon>trending_up</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{ stats.enProgreso }}</span>
+        <span class="stat-label">En progreso</span>
+      </div>
+    </div>
+
+    <div class="stat-card" [style.background]="getStatusColor('Completado') + '20'">
+      <mat-icon>check_circle</mat-icon>
+      <div class="stat-info">
+        <span class="stat-value">{{ stats.completados }}</span>
+        <span class="stat-label">Completados</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfica de torta -->
+  <div class="chart-section" *ngIf="stats.total > 0">
+    <h4>Distribución de progreso</h4>
+    <div class="chart-container">
+      <canvas #progressChart></canvas>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay datos -->
+  <div class="no-data" *ngIf="stats.total === 0">
+    <p>Aún no tienes cursos inscritos</p>
+    <button mat-raised-button color="primary" routerLink="/dashboard/courses">
+      Ver cursos disponibles
+    </button>
+  </div>
+</div>
