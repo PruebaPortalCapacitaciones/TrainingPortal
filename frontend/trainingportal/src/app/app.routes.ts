@@ -8,11 +8,14 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   
-  // Ruta protegida de ejemplo - crea este componente después
+  // Dashboard con rutas hijas
   { 
     path: 'dashboard', 
     loadComponent: () => import('./features/dashboard/dashboard.component').then(m => m.DashboardComponent),
-    canActivate: [AuthGuard] 
+    canActivate: [AuthGuard],
+    children: [
+      
+    ]
   },
   
   // Ruta comodín para 404

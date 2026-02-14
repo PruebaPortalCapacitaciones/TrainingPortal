@@ -1,0 +1,50 @@
+<div class="dashboard">
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="logo-area" (click)="goToDashboard()" style="cursor: pointer;">
+        <img src="favicon.png" alt="Logo" class="logo">
+        <span class="app-name">TRAINING PORTAL</span>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/dashboard/courses" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>menu_book</mat-icon>
+        <span>Cursos</span>
+      </a>
+
+      <a routerLink="/dashboard/my-courses" routerLinkActive="active">
+        <mat-icon>star</mat-icon>
+        <span>Mis Cursos</span>
+      </a>
+
+      <a *ngIf="isAdmin" routerLink="/dashboard/manage-courses" routerLinkActive="active">
+        <mat-icon>settings</mat-icon>
+        <span>Gestionar</span>
+      </a>
+    </nav>
+
+    <div class="user-section">
+      <div class="user-info">
+        <span class="user-name">{{ user?.name }}</span>
+        <span class="role-badge" [class.admin]="isAdmin">
+          {{ isAdmin ? 'Administrador' : 'Usuario' }}
+        </span>
+      </div>
+      
+      <button class="logout-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="content">
+    <router-outlet></router-outlet>
+
+    <div class="welcome" *ngIf="showWelcome()">
+      <h2>¡Bienvenido, {{ user?.name }}!</h2>
+      <p>Selecciona una opción del menú para comenzar.</p>
+    </div>
+  </main>
+</div>
