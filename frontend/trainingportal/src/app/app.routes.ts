@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
-import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,10 +15,20 @@ export const routes: Routes = [
       import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
     canActivate: [AuthGuard],
     children: [
-      { 
-        path: 'manage-courses', 
-        loadComponent: () => import('./features/courses/manage-courses/manage-courses.component').then(m => m.ManageCoursesComponent)
-      }
+      {
+        path: 'manage-courses',
+        loadComponent: () =>
+          import('./features/courses/manage-courses/manage-courses.component').then(
+            (m) => m.ManageCoursesComponent,
+          ),
+      },
+      {
+        path: 'courses', // <-- NUEVA RUTA
+        loadComponent: () =>
+          import('./features/courses/course-list/course-list.component').then(
+            (m) => m.CourseListComponent,
+          ),
+      },
     ],
   },
 

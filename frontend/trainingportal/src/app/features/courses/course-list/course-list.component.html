@@ -1,0 +1,56 @@
+<div class="course-list">
+  <h2>Cursos Disponibles</h2>
+
+  <div class="loading" *ngIf="loading">Cargando cursos...</div>
+
+  <div class="modules-container" *ngIf="!loading">
+    <div *ngFor="let moduleName of getModuleKeys()" class="module-section">
+      <h3>{{ moduleName }}</h3>
+
+      <div class="courses-grid">
+        <div *ngFor="let course of coursesByModule[moduleName]" class="course-card">
+          <div class="course-header">
+            <h4>{{ course.title }}</h4>
+            <span class="level-badge">{{ course.level?.displayName || course.level }}</span>
+          </div>
+
+          <p class="description">{{ course.description }}</p>
+
+          <div class="course-meta">
+            <span class="meta-item">
+              <mat-icon>schedule</mat-icon>
+              {{ course.durationHours }} h
+            </span>
+            <span class="meta-item">
+              <mat-icon>category</mat-icon>
+              {{ course.module?.displayName || course.module }}
+            </span>
+          </div>
+
+          <!-- Si ya está inscrito: muestra progreso -->
+          <div class="course-status" *ngIf="isEnrolled(course.id) as enrolled">
+            <div class="progress-info">
+              <span class="status-text" [style.color]="getStatusColor(enrolled.status)">
+                {{ enrolled.status }}
+              </span>
+              <span class="progress">{{ enrolled.progress }}%</span>
+            </div>
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                [style.width.%]="enrolled.progress"
+                [style.background]="getStatusColor(enrolled.status)"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Si NO está inscrito: botón de inscripción -->
+          <button *ngIf="!isEnrolled(course.id)" class="btn-enroll" (click)="enroll(course)">
+            <mat-icon>how_to_reg</mat-icon>
+            <span>Inscribirse</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 <div class="dashboard">
   <!-- Top Bar -->
   <header class="top-bar">
-    <div class="logo-area" (click)="goToDashboard()" style="cursor: pointer;">
-        <img src="favicon.png" alt="Logo" class="logo">
-        <span class="app-name">TRAINING PORTAL</span>
+    <div class="logo-area" (click)="goToDashboard()" style="cursor: pointer">
+      <img src="favicon.png" alt="Logo" class="logo" />
+      <span class="app-name">TRAINING PORTAL</span>
     </div>
 
     <nav class="nav-menu">
-      <a routerLink="/dashboard/courses" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/dashboard/courses" routerLinkActive="active">
         <mat-icon>menu_book</mat-icon>
         <span>Cursos</span>
       </a>
@@ -30,7 +30,7 @@
           {{ isAdmin ? 'Administrador' : 'Usuario' }}
         </span>
       </div>
-      
+
       <button class="logout-btn" (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>
