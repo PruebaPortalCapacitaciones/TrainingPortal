@@ -1,6 +1,11 @@
 spring:
   application:
     name: trainingportal
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
 
 server:
   port: 8080
@@ -13,3 +18,9 @@ jpa:
     hibernate:
       format_sql: true
 
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+
+cors:
+  allowed-origins: ${FRONTEND_URL}
