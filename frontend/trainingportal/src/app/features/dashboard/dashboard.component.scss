@@ -6,12 +6,12 @@
 }
 
 .top-bar {
-  background: white;
+  background: $white;
   padding: 0.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba($text-dark, 0.05);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    cursor: pointer;
 
     .logo {
       width: 35px;
@@ -63,10 +64,10 @@
 
       &.active {
         background: $primary-dark;
-        color: white;
+        color: $white;
 
         mat-icon {
-          color: white;
+          color: $white;
         }
       }
     }
@@ -101,7 +102,7 @@
 
         &.admin {
           background: $primary-dark;
-          color: white;
+          color: $white;
         }
       }
     }
@@ -112,7 +113,7 @@
       gap: 0.5rem;
       padding: 0.5rem 1.2rem;
       background: $error;
-      color: white;
+      color: $white;
       border: none;
       border-radius: 30px;
       font-weight: 500;

@@ -1,9 +1,11 @@
 package com.gis.trainingportal.modules.course;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/* Enum para representar los módulos de los cursos. */
 public enum ModuleEnum {
 
     FULLSTACK("Fullstack"),
@@ -24,13 +26,13 @@ public enum ModuleEnum {
 
     @JsonCreator
     public static ModuleEnum fromString(String text) {
-        if (text == null) return null;
-        
+        if (text == null)
+            return null;
+
         return Arrays.stream(ModuleEnum.values())
                 .filter(module -> module.displayName.equals(text))
                 .findFirst()
-                .orElseThrow(() -> 
-                    new IllegalArgumentException("Módulo no válido: " + text + 
-                        ". Valores permitidos: " + Arrays.toString(ModuleEnum.values())));
+                .orElseThrow(() -> new IllegalArgumentException("Módulo Inválido: " + text +
+                        ". Valores Permitidos: " + Arrays.toString(ModuleEnum.values())));
     }
 }

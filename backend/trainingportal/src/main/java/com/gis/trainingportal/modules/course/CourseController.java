@@ -1,7 +1,7 @@
 package com.gis.trainingportal.modules.course;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gis.trainingportal.common.ApiResponseDto;
 
+/* Controlador para gestionar cursos. */
 @RestController
 @RequestMapping("/courses")
 public class CourseController {
@@ -25,50 +26,55 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    // Listar cursos agrupados por módulo
+    /* Endpoint para listar todos los cursos agrupados por módulo. */
     @GetMapping("/list")
     public ResponseEntity<ApiResponseDto<Map<String, List<CourseEntity>>>> listByModule() {
         Map<String, List<CourseEntity>> grouped = courseService.listByModule();
-        return ResponseEntity.ok(ApiResponseDto.success("Cursos agrupados por módulo", grouped, 200));
+        return ResponseEntity.ok(ApiResponseDto.success("Cursos Agrupados por Módulo", grouped, 200));
     }
 
-    // Crear un nuevo curso
+    /* Endpoint para crear un nuevo curso. */
     @PostMapping
     public ResponseEntity<ApiResponseDto<CourseEntity>> create(@RequestBody CourseEntity course) {
         CourseEntity saved = courseService.create(course);
-        return ResponseEntity.ok(ApiResponseDto.success("Curso creado con éxito", saved, 200));
+        return ResponseEntity.ok(ApiResponseDto.success("Curso Creado con Éxito", saved, 200));
     }
 
-    // Actualizar un curso existente
+    /* Endpoint para actualizar un curso existente. */
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponseDto<CourseEntity>> update(
             @PathVariable Long id,
             @RequestBody CourseEntity course) {
         CourseEntity updated = courseService.update(id, course);
-        return ResponseEntity.ok(ApiResponseDto.success("Curso actualizado con éxito", updated, 200));
+        return ResponseEntity.ok(ApiResponseDto.success("Curso Actualizado con Éxito", updated, 200));
     }
 
-    // Activar/Desactivar un curso (soft delete)
+    /* Endpoint para eliminar (soft delete) un curso. */
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponseDto<CourseEntity>> softDelete(@PathVariable Long id) {
         CourseEntity updated = courseService.softDelete(id);
         return ResponseEntity.ok(
-                ApiResponseDto.success("Estado del curso actualizado (activo/inactivo)", updated, 200));
+                ApiResponseDto.success("Estado del Curso Actualizado (Activo/Inactivo)", updated, 200));
     }
 
-    // Obtener un curso por ID
+    /* Endpoint para obtener un curso por su ID. */
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponseDto<CourseEntity>> getById(@PathVariable Long id) {
         CourseEntity course = courseService.getById(id);
-        return ResponseEntity.ok(ApiResponseDto.success("Curso obtenido con éxito", course, 200));
+        return ResponseEntity.ok(ApiResponseDto.success("Curso Obtenido con Éxito", course, 200));
     }
 
+    /* Endpoint para listar módulos disponibles. */
     @GetMapping("/modules")
     public ResponseEntity<ApiResponseDto<List<String>>> getModules() {
-        List<String> modules = Arrays.stream(ModuleEnum.values())
-                .map(ModuleEnum::getDisplayName)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(ApiResponseDto.success("Módulos disponibles", modules, 200));
+        List<String> modules = courseService.getModules();
+        return ResponseEntity.ok(ApiResponseDto.success("Módulos Disponibles", modules, 200));
     }
 
+    /* Endpoint para listar niveles disponibles. */
+    @GetMapping("/levels")
+    public ResponseEntity<ApiResponseDto<List<String>>> getLevels() {
+        List<String> levels = courseService.getLevels();
+        return ResponseEntity.ok(ApiResponseDto.success("Niveles Disponibles", levels, 200));
+    }
 }

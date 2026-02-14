@@ -21,7 +21,7 @@ mat-dialog-content {
   min-width: 450px;
   max-width: 600px;
   padding: 0 1.5rem !important;
-  
+
   .full-width:first-of-type {
     margin-top: 0.25rem;
   }
@@ -54,7 +54,7 @@ mat-dialog-content {
 
   ::ng-deep .mat-mdc-form-field.mat-focused .mdc-text-field--outlined {
     background-color: $white;
-    box-shadow: 0 0 0 4px rgba(120, 196, 193, 0.2);
+    box-shadow: 0 0 0 4px rgba($mint, 0.2);
   }
 
   ::ng-deep .mat-mdc-form-field-label {
@@ -62,14 +62,16 @@ mat-dialog-content {
     font-weight: 500;
   }
 
-  ::ng-deep input, ::ng-deep textarea, ::ng-deep .mat-mdc-select-value-text {
+  ::ng-deep input,
+  ::ng-deep textarea,
+  ::ng-deep .mat-mdc-select-value-text {
     color: $text-dark !important;
     font-size: 0.95rem;
   }
 
   ::ng-deep .mat-mdc-select-panel {
     border-radius: 16px !important;
-    box-shadow: 0 10px 25px rgba(15, 76, 117, 0.15) !important;
+    box-shadow: 0 10px 25px rgba($primary-dark, 0.15) !important;
   }
 
   ::ng-deep .mat-mdc-option {
@@ -103,14 +105,14 @@ mat-dialog-actions {
     font-size: 0.95rem;
     transition: all 0.3s;
 
-    &[color="primary"] {
+    &[color='primary'] {
       background: linear-gradient(135deg, $primary-dark, $primary);
       color: $white;
 
       &:hover:not(:disabled) {
         background: linear-gradient(135deg, darken($primary-dark, 5%), darken($primary, 5%));
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(15, 76, 117, 0.3);
+        box-shadow: 0 8px 20px rgba($primary-dark, 0.3);
       }
 
       &:disabled {
@@ -118,7 +120,7 @@ mat-dialog-actions {
       }
     }
 
-    &:not([color="primary"]) {
+    &:not([color='primary']) {
       background: $mint-light;
       color: $primary-dark;
 
@@ -128,6 +130,13 @@ mat-dialog-actions {
       }
     }
   }
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: $text-soft;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 600px) {

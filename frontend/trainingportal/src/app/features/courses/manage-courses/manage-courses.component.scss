@@ -18,7 +18,7 @@
 
   .btn-create {
     background: $primary-dark;
-    color: white;
+    color: $white;
     border: none;
     padding: 0.6rem 1.5rem;
     border-radius: 30px;
@@ -51,9 +51,9 @@
 }
 
 .table-container {
-  background: white;
+  background: $white;
   border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 20px rgba($text-dark, 0.05);
   overflow-x: auto;
 }
 
@@ -88,15 +88,15 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    
+
     &.active {
-      background-color: #28a745;
-      box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+      background-color: green;
+      box-shadow: 0 0 5px rgba(green, 0.5);
     }
-    
+
     &.inactive {
-      background-color: #dc3545;
-      box-shadow: 0 0 5px rgba(220, 53, 69, 0.5);
+      background-color: red;
+      box-shadow: 0 0 5px rgba(red, 0.5);
     }
   }
 
@@ -125,7 +125,7 @@
 
       &:hover {
         background: $mint-light;
-        
+
         mat-icon {
           color: $primary-dark;
         }
@@ -135,37 +135,37 @@
     // Toggle switch
     .toggle-btn {
       padding: 0.3rem;
-      
+
       .toggle-switch {
         display: inline-block;
         width: 36px;
         height: 20px;
-        background-color: #ccc;
+        background-color: $text-light;
         border-radius: 20px;
         position: relative;
         transition: background-color 0.3s;
-        
+
         &.active {
           background-color: $primary-dark;
-          
+
           .toggle-slider {
             transform: translateX(16px);
           }
         }
-        
+
         .toggle-slider {
           position: absolute;
           top: 2px;
           left: 2px;
           width: 16px;
           height: 16px;
-          background-color: white;
+          background-color: $white;
           border-radius: 50%;
           transition: transform 0.3s;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+          box-shadow: 0 2px 4px rgba($text-dark, 0.2);
         }
       }
-      
+
       &:hover .toggle-switch {
         opacity: 0.9;
       }
