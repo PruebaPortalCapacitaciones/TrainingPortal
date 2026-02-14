@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import Swal from 'sweetalert2';
 import { PALETTE } from '../../../../_palette';
+import { environment } from '../../../../environments/environment';
 import { EnrollmentService } from '../../../core/services/enrollment.service';
+import { TokenService } from '../../../core/services/token.service';
 
 @Component({
   selector: 'app-my-courses',
@@ -18,7 +21,11 @@ export class MyCoursesComponent implements OnInit {
   courses: any[] = [];
   loading = true;
 
-  constructor(private enrollmentService: EnrollmentService) {}
+  constructor(
+    private enrollmentService: EnrollmentService,
+    private tokenService: TokenService,
+    private http: HttpClient,
+  ) {}
 
   ngOnInit(): void {
     this.loadMyCourses();
@@ -34,6 +41,34 @@ export class MyCoursesComponent implements OnInit {
       error: (err) => {
         console.error('Error cargando cursos:', err);
         this.loading = false;
+      },
+    });
+  }
+
+  downloadCertificate(courseId: number) {
+    const url = `${environment.apiUrl}/certificates/download/${courseId}`;
+
+    // El interceptor agregará el token automáticamente
+    this.http.get(url, { responseType: 'blob' }).subscribe({
+      next: (blob) => {
+        // Crear URL del blob y descargar
+        const blobUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = `certificado-${courseId}.pdf`;
+        link.click();
+
+        // Limpiar
+        window.URL.revokeObjectURL(blobUrl);
+      },
+      error: (err) => {
+        console.error('Error descargando certificado:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo descargar el certificado',
+          confirmButtonColor: PALETTE.primaryDark,
+        });
       },
     });
   }

@@ -73,10 +73,14 @@
       </div>
 
       <!-- Mensaje para curso completado -->
-      <div class="completed-message" *ngIf="course.status === 'Completado'">
-        <mat-icon>emoji_events</mat-icon>
-        <span>¡Curso completado! Pronto podrás descargar tu insignia</span>
-      </div>
+      <button
+        *ngIf="course.status === 'Completado'"
+        class="btn-certificate"
+        (click)="downloadCertificate(course.courseId)"
+      >
+        <mat-icon>download</mat-icon>
+        Descargar certificado
+      </button>
     </div>
 
     <div class="no-courses" *ngIf="courses.length === 0">
