@@ -31,9 +31,8 @@
   box-shadow: 0 5px 15px rgba($text-dark, 0.05);
 
   &.total {
-    background: linear-gradient(135deg, $primary-dark, $primary);
+    background: linear-gradient(135deg, $primary, $primary-light);
     color: $white;
-
     mat-icon,
     .stat-label {
       color: $white;

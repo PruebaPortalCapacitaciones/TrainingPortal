@@ -150,9 +150,9 @@ export class MyCoursesComponent implements OnInit {
   getStatusColor(status: string): string {
     switch (status) {
       case 'Inscrito':
-        return PALETTE.mintDark;
+        return PALETTE.secondaryDark;
       case 'Iniciado':
-        return PALETTE.mint;
+        return PALETTE.secondary;
       case 'En progreso':
         return PALETTE.primary;
       case 'Completado':

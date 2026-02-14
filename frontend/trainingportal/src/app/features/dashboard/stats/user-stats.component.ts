@@ -56,7 +56,12 @@ export class UserStatsComponent implements OnInit, AfterViewInit {
               this.stats.enProgreso,
               this.stats.completados,
             ],
-            backgroundColor: [PALETTE.mintDark, PALETTE.mint, PALETTE.primary, PALETTE.primaryDark],
+            backgroundColor: [
+              PALETTE.secondaryLight,
+              PALETTE.primaryLight,
+              PALETTE.primary,
+              PALETTE.primaryDark,
+            ],
             borderWidth: 0,
             hoverOffset: 8,
           },
@@ -96,7 +101,7 @@ export class UserStatsComponent implements OnInit, AfterViewInit {
             backgroundColor: PALETTE.white,
             titleColor: PALETTE.textDark,
             bodyColor: PALETTE.textSoft,
-            borderColor: PALETTE.mintLight,
+            borderColor: PALETTE.secondaryLight,
             borderWidth: 1,
             padding: 12,
             cornerRadius: 8,
@@ -126,9 +131,9 @@ export class UserStatsComponent implements OnInit, AfterViewInit {
   getStatusColor(status: string): string {
     switch (status) {
       case 'Inscrito':
-        return PALETTE.mintDark;
+        return PALETTE.secondaryDark;
       case 'Iniciado':
-        return PALETTE.mint;
+        return PALETTE.secondary;
       case 'En progreso':
         return PALETTE.primary;
       case 'Completado':

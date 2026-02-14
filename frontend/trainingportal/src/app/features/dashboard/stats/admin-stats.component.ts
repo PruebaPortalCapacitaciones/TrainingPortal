@@ -45,9 +45,9 @@ export class AdminStatsComponent implements OnInit {
   getStatusColor(status: string): string {
     switch (status) {
       case 'inscritos':
-        return PALETTE.mintDark;
+        return PALETTE.secondaryDark;
       case 'iniciados':
-        return PALETTE.mint;
+        return PALETTE.secondary;
       case 'enProgreso':
         return PALETTE.primary;
       case 'completados':

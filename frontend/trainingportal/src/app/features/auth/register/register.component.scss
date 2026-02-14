@@ -37,12 +37,12 @@
 h2 {
   text-align: center;
   margin-bottom: 1.8rem;
-  color: $mint-dark;
+  color: $secondary-dark;
   font-weight: 600;
   font-size: 1.3rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  border-bottom: 2px solid $mint-light;
+  border-bottom: 2px solid $secondary-light;
   padding-bottom: 0.8rem;
 }
 
@@ -60,7 +60,7 @@ h2 {
   input {
     width: 100%;
     padding: 0.8rem 1rem;
-    border: 2px solid $mint-light;
+    border: 2px solid $secondary-light;
     border-radius: 14px;
     font-size: 0.95rem;
     font-family: inherit;
@@ -69,9 +69,9 @@ h2 {
     box-sizing: border-box;
 
     &:focus {
-      border-color: $mint;
+      border-color: $secondary;
       outline: none;
-      box-shadow: 0 0 0 4px rgba($mint, 0.2);
+      box-shadow: 0 0 0 4px rgba($secondary, 0.2);
       background-color: $white;
     }
 
@@ -109,11 +109,11 @@ h2 {
 }
 
 .btn-secondary {
-  background: $mint-light;
+  background: $secondary-light;
   color: $primary-dark;
 
   &:hover {
-    background: darken($mint-light, 5%);
+    background: darken($secondary-light, 5%);
     transform: translateY(-2px);
   }
 }

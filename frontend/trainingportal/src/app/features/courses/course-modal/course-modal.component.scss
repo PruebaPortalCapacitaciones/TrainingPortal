@@ -32,11 +32,11 @@ mat-dialog-content {
   margin-bottom: 1.2rem;
 
   ::ng-deep .mat-mdc-form-field-outline {
-    color: $mint-light;
+    color: $secondary-light;
   }
 
   ::ng-deep .mat-mdc-form-field-outline-thick {
-    color: $mint;
+    color: $secondary;
   }
 
   ::ng-deep .mdc-text-field--outlined {
@@ -45,16 +45,16 @@ mat-dialog-content {
   }
 
   ::ng-deep .mat-mdc-form-field-flex:hover .mat-mdc-form-field-outline {
-    color: $mint;
+    color: $secondary;
   }
 
   ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
-    color: $mint;
+    color: $secondary;
   }
 
   ::ng-deep .mat-mdc-form-field.mat-focused .mdc-text-field--outlined {
     background-color: $white;
-    box-shadow: 0 0 0 4px rgba($mint, 0.2);
+    box-shadow: 0 0 0 4px rgba($secondary, 0.2);
   }
 
   ::ng-deep .mat-mdc-form-field-label {
@@ -79,11 +79,11 @@ mat-dialog-content {
     font-size: 0.95rem;
 
     &:hover {
-      background: $mint-light !important;
+      background: $secondary-light !important;
     }
 
     &.mat-mdc-option-active {
-      background: $mint-light !important;
+      background: $secondary-light !important;
     }
 
     &.mat-mdc-selected {
@@ -121,11 +121,11 @@ mat-dialog-actions {
     }
 
     &:not([color='primary']) {
-      background: $mint-light;
+      background: $secondary-light;
       color: $primary-dark;
 
       &:hover {
-        background: darken($mint-light, 5%);
+        background: darken($secondary-light, 5%);
         transform: translateY(-2px);
       }
     }

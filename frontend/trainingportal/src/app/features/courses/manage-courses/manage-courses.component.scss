@@ -65,7 +65,7 @@
   th {
     text-align: left;
     padding: 1rem;
-    background: $mint-light;
+    background: $secondary-light;
     color: $text-dark;
     font-weight: 600;
     font-size: 0.9rem;
@@ -73,7 +73,7 @@
 
   td {
     padding: 1rem;
-    border-bottom: 1px solid $mint-light;
+    border-bottom: 1px solid $secondary-light;
     color: $text-dark;
     vertical-align: middle;
   }
@@ -90,13 +90,13 @@
     border-radius: 50%;
 
     &.active {
-      background-color: green;
-      box-shadow: 0 0 5px rgba(green, 0.5);
+      background-color: $green;
+      box-shadow: 0 0 5px rgba($green, 0.5);
     }
 
     &.inactive {
-      background-color: red;
-      box-shadow: 0 0 5px rgba(red, 0.5);
+      background-color: $red;
+      box-shadow: 0 0 5px rgba($red, 0.5);
     }
   }
 
@@ -124,7 +124,7 @@
       }
 
       &:hover {
-        background: $mint-light;
+        background: $secondary-light;
 
         mat-icon {
           color: $primary-dark;

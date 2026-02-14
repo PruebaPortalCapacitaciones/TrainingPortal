@@ -1,18 +1,25 @@
 export const PALETTE = {
-  primaryDark: '#008080',
-  primary: '#40E0D0',
-  primaryLight: '#AFEEEE',
-  
-  mintDark: '#4682B4',
-  mint: '#87CEEB',
-  mintLight: '#B0E0E6',
-  
-  textDark: '#2C3E50',
-  textSoft: '#5D6D7E',
-  textLight: '#AAB7B8',
-  
-  background: '#F8F9F9',
+  primaryDark: '#1E3A8A',
+  primary: '#2563EB',
+  primaryLight: '#DBEAFE',
+
+  secondaryDark: '#5B21B6',
+  secondary: '#7C3AED',
+  secondaryLight: '#EDE9FE',
+
+  textDark: '#0F172A',
+  textSoft: '#334155',
+  textLight: '#94A3B8',
+
+  background: '#F8FAFF',
   white: '#FFFFFF',
-  
-  error: '#f08579'
+
+  error: '#F43F5E',
+  warning: '#F59E0B',
+  success: '#22C55E',
+  info: '#38BDF8',
+
+  red: '#E11D48',
+  green: '#16A34A',
+  blue: '#2563EB',
 } as const;

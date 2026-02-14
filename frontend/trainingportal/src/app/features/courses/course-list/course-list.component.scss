@@ -25,11 +25,11 @@
 
 .module-section {
   h3 {
-    color: $mint-dark;
+    color: $secondary-dark;
     font-size: 1.4rem;
     margin-bottom: 1.5rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid $mint-light;
+    border-bottom: 2px solid $secondary-light;
   }
 }
 
@@ -70,8 +70,8 @@
       font-size: 0.7rem;
       padding: 0.2rem 0.6rem;
       border-radius: 12px;
-      background: $mint-light;
-      color: $mint-dark;
+      background: $secondary-light;
+      color: $secondary-dark;
       font-weight: 600;
     }
   }
@@ -113,7 +113,7 @@
 
     .progress-bar {
       height: 6px;
-      background: $mint-light;
+      background: $secondary-light;
       border-radius: 3px;
       overflow: hidden;
 

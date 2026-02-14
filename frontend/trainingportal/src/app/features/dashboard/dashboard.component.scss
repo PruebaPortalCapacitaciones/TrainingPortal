@@ -58,7 +58,7 @@
       }
 
       &:hover {
-        background: $mint-light;
+        background: $secondary-light;
         color: $primary-dark;
       }
 
@@ -95,13 +95,13 @@
         font-size: 0.7rem;
         padding: 0.2rem 0.6rem;
         border-radius: 12px;
-        background: $mint-light;
-        color: $mint-dark;
+        background: $secondary-light;
+        color: $secondary-dark;
         font-weight: 600;
         display: inline-block;
 
         &.admin {
-          background: $primary-dark;
+          background: $primary;
           color: $white;
         }
       }
