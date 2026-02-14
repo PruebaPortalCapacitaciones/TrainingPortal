@@ -23,10 +23,17 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'courses', // <-- NUEVA RUTA
+        path: 'courses',
         loadComponent: () =>
           import('./features/courses/course-list/course-list.component').then(
             (m) => m.CourseListComponent,
+          ),
+      },
+      {
+        path: 'my-courses',
+        loadComponent: () =>
+          import('./features/courses/my-courses/my-courses.component').then(
+            (m) => m.MyCoursesComponent,
           ),
       },
     ],

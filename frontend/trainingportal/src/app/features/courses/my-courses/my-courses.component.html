@@ -1,0 +1,91 @@
+<div class="my-courses">
+  <h2>Mis Cursos</h2>
+
+  <div class="loading" *ngIf="loading">Cargando tus cursos...</div>
+
+  <div class="courses-grid" *ngIf="!loading">
+    <div *ngFor="let course of courses" class="course-card">
+      <div class="course-header">
+        <div>
+          <h3>{{ course.title }}</h3>
+          <div class="course-meta">
+            <span class="meta-item">
+              <mat-icon>category</mat-icon>
+              {{ course.module }}
+            </span>
+            <span class="meta-item" *ngIf="course.level">
+              <mat-icon>signal_cellular_alt</mat-icon>
+              {{ course.level }}
+            </span>
+          </div>
+        </div>
+        <span
+          class="status-badge"
+          [style.background]="getStatusColor(course.status)"
+          [matTooltip]="course.status"
+        >
+          {{ course.status }}
+        </span>
+      </div>
+
+      <!-- Barra de progreso -->
+      <div class="progress-section">
+        <div class="progress-info">
+          <span>Progreso</span>
+          <span class="progress-percent">{{ course.progress }}%</span>
+        </div>
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="course.progress"
+            [style.background]="getStatusColor(course.status)"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Estado del curso en el catálogo -->
+      <div class="course-status" *ngIf="!isCourseActive(course)">
+        <mat-icon>warning_amber</mat-icon>
+        <span>Este curso ya no está disponible en el catálogo</span>
+      </div>
+
+      <!-- Acciones: Solo se muestran si NO está completado -->
+      <div class="course-actions" *ngIf="course.status !== 'Completado'">
+        <button
+          mat-raised-button
+          class="btn-advance"
+          (click)="advanceCourse(course)"
+          [matTooltip]="'Avanzar en el curso'"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          <span>Avanzar</span>
+        </button>
+
+        <button
+          mat-raised-button
+          class="btn-remove"
+          (click)="removeCourse(course)"
+          [matTooltip]="'Eliminar curso'"
+        >
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </div>
+
+      <!-- Mensaje para curso completado -->
+      <div class="completed-message" *ngIf="course.status === 'Completado'">
+        <mat-icon>emoji_events</mat-icon>
+        <span>¡Curso completado! Pronto podrás descargar tu insignia</span>
+      </div>
+    </div>
+
+    <div class="no-courses" *ngIf="courses.length === 0">
+      <mat-icon>school</mat-icon>
+      <h3>No tienes cursos inscritos</h3>
+      <p>Explora el catálogo e inscríbete en algún curso</p>
+      <button mat-raised-button color="primary" routerLink="/dashboard/courses">
+        Ver cursos disponibles
+      </button>
+    </div>
+  </div>
+</div>
