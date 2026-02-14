@@ -1,0 +1,51 @@
+<div class="manage-courses">
+  <div class="header">
+    <h2>Gestión de Cursos</h2>
+    <button class="btn-create" (click)="createCourse()">
+      <mat-icon>add</mat-icon>
+      Nuevo Curso
+    </button>
+  </div>
+
+  <div class="loading" *ngIf="loading">Cargando cursos...</div>
+
+  <div class="table-container" *ngIf="!loading">
+    <table class="courses-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Módulo</th>
+          <th>Nivel</th>
+          <th>Duración</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses">
+          <td>{{ course.title }}</td>
+          <td>{{ course.module?.displayName || course.module }}</td>
+          <td>{{ course.level }}</td>
+          <td>{{ course.durationHours }} h</td>
+          <td>
+            <span class="status-indicator" [class.active]="course.active" [class.inactive]="!course.active"></span>
+          </td>
+          <td class="actions">
+            <button class="btn-icon" (click)="editCourse(course)" matTooltip="Editar">
+              <mat-icon>edit</mat-icon>
+            </button>
+            
+            <button class="btn-icon toggle-btn" (click)="toggleStatus(course)" [matTooltip]="course.active ? 'Desactivar' : 'Activar'">
+              <span class="toggle-switch" [class.active]="course.active">
+                <span class="toggle-slider"></span>
+              </span>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="courses.length === 0">
+          <td colspan="6" class="no-data">No hay cursos disponibles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
